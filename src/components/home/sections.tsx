@@ -9,7 +9,7 @@ import { ProductGallery } from "@/components/ProductGallery";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[min(78vh,720px)] overflow-hidden bg-forest-deep md:min-h-[min(88vh,860px)]">
+    <section className="relative -mt-[7.5rem] min-h-[100dvh] overflow-hidden bg-forest-deep md:-mt-[8rem]">
       <Image
         src={siteImages.hero}
         alt="Natural ingredients and everyday foods from Prime Weaves"
@@ -18,10 +18,10 @@ export function Hero() {
         className="object-cover object-center sm:object-[70%_center]"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/80 via-forest-deep/45 to-forest-deep/15" />
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/75 via-forest-deep/35 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/50 via-transparent to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[min(78vh,720px)] max-w-7xl items-end px-5 pb-12 pt-24 md:min-h-[min(88vh,860px)] md:items-center md:px-8 md:pb-20 md:pt-28">
+      <div className="relative mx-auto flex min-h-[100dvh] max-w-7xl items-end px-5 pb-12 pt-28 md:items-center md:px-8 md:pb-20 md:pt-32">
         <div className="max-w-xl animate-rise text-cream">
           <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
             Conscious choices · Better everyday food
@@ -50,7 +50,7 @@ export function Hero() {
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {heroTrust.map((item) => (
-              <div key={item.label} className="border-t border-cream/25 pt-3">
+              <div key={item.label} className="pt-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em]">
                   {item.label}
                 </p>
