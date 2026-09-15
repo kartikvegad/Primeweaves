@@ -52,7 +52,7 @@ export function ProductGallery({
   return (
     <div className={className}>
       <div
-        className={`relative aspect-[4/5] overflow-hidden ${bg}`}
+        className={`relative max-h-[70vh] aspect-[3/4] overflow-hidden sm:max-h-none sm:aspect-[4/5] ${bg}`}
         role="region"
         aria-roledescription="carousel"
         aria-label={`${name} images`}

@@ -9,24 +9,24 @@ import { ProductGallery } from "@/components/ProductGallery";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[min(88vh,860px)] overflow-hidden bg-forest-deep">
+    <section className="relative min-h-[min(78vh,720px)] overflow-hidden bg-forest-deep md:min-h-[min(88vh,860px)]">
       <Image
         src={siteImages.hero}
-        alt="Primeweaves natural food products"
+        alt="Natural ingredients and everyday foods from Prime Weaves"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-center sm:object-[70%_center]"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/55 to-forest-deep/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/80 via-forest-deep/45 to-forest-deep/15" />
+      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-transparent to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[min(88vh,860px)] max-w-7xl items-end px-5 pb-14 pt-28 md:items-center md:px-8 md:pb-20">
+      <div className="relative mx-auto flex min-h-[min(78vh,720px)] max-w-7xl items-end px-5 pb-12 pt-24 md:min-h-[min(88vh,860px)] md:items-center md:px-8 md:pb-20 md:pt-28">
         <div className="max-w-xl animate-rise text-cream">
           <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
             Conscious choices · Better everyday food
           </p>
-          <h1 className="mt-4 font-display text-4xl leading-[1.08] md:text-6xl">
+          <h1 className="mt-4 font-display text-3xl leading-[1.08] sm:text-4xl md:text-6xl">
             Choose better. Live lighter.
           </h1>
           <p className="mt-5 max-w-md text-base leading-relaxed text-cream/80 md:text-lg">
@@ -36,13 +36,13 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/shop"
-              className="inline-flex bg-cream px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-forest transition hover:bg-white"
+              className="inline-flex bg-cream px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-forest transition-colors duration-200 hover:bg-white"
             >
               Shop the range
             </Link>
             <Link
               href="/#qualities"
-              className="inline-flex border border-cream/35 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition hover:border-cream"
+              className="inline-flex border border-cream/35 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-cream hover:bg-cream/10"
             >
               Our qualities
             </Link>
@@ -81,16 +81,18 @@ export function QualitiesBar() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-8">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
           {qualities.map((quality) => (
             <div key={quality.id} className="text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-forest/15 bg-cream text-forest transition hover:border-leaf hover:text-leaf">
                 <QualityIcon id={quality.id} />
               </div>
-              <p className="mt-3 text-xs font-semibold text-forest">
+              <p className="mt-3 text-[11px] font-semibold leading-snug text-forest sm:text-xs">
                 {quality.label}
               </p>
-              <p className="mt-1 text-[11px] text-muted">{quality.short}</p>
+              <p className="mt-1 hidden text-[11px] text-muted sm:block">
+                {quality.short}
+              </p>
             </div>
           ))}
         </div>
@@ -179,7 +181,7 @@ export function BrandIntro() {
               Foods made with real difference in mind.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-cream/75">
-              Primeweaves is a natural foods manufacturer for retail and export.
+              Prime Weaves is a natural foods manufacturer for retail and export.
               We start with a focused range and grow carefully — so quality stays
               ahead of catalog size.
             </p>
@@ -335,7 +337,7 @@ function ProductDeepDive({
           <p className="text-[11px] uppercase tracking-[0.22em] text-leaf">
             {product.category} · {product.badge || "In range"}
           </p>
-          <h3 className="mt-3 font-display text-4xl text-forest md:text-5xl">
+          <h3 className="mt-3 font-display text-3xl text-forest sm:text-4xl md:text-5xl">
             {product.name}
           </h3>
           <p className="mt-4 text-lg leading-relaxed text-forest/80">
@@ -344,6 +346,24 @@ function ProductDeepDive({
           <p className="mt-4 text-sm leading-relaxed text-muted">
             {product.description}
           </p>
+
+          <div className="mt-8">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
+              Benefits
+            </p>
+            <ul className="mt-4 space-y-4">
+              {product.benefits.slice(0, 4).map((benefit) => (
+                <li key={benefit.title}>
+                  <p className="text-sm font-medium text-forest">
+                    {benefit.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">
+                    {benefit.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="mt-8">
             <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
@@ -421,19 +441,20 @@ export function DualBanners() {
       <div className="mx-auto grid max-w-7xl gap-4 px-5 md:grid-cols-2 md:px-8">
         <Link
           href="/shop"
-          className="group relative min-h-[280px] overflow-hidden bg-forest"
+          className="group relative min-h-[240px] overflow-hidden bg-forest sm:min-h-[280px]"
         >
           <Image
             src="/products/moringa-pouch.jpg"
             alt=""
             fill
             className="object-cover opacity-35 transition-opacity duration-500 group-hover:opacity-45"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="relative flex h-full min-h-[280px] flex-col justify-end p-8 text-cream transition-colors duration-300 group-hover:bg-forest-deep/25">
+          <div className="relative flex h-full min-h-[240px] flex-col justify-end p-5 text-cream transition-colors duration-300 group-hover:bg-forest-deep/25 sm:min-h-[280px] sm:p-8">
             <p className="text-[11px] uppercase tracking-[0.2em] text-gold">
               Everyday essentials
             </p>
-            <h3 className="mt-3 font-display text-3xl">
+            <h3 className="mt-3 font-display text-2xl sm:text-3xl">
               Shop the current range
             </h3>
             <p className="mt-3 max-w-sm text-sm text-cream/75">
@@ -446,25 +467,26 @@ export function DualBanners() {
           </div>
         </Link>
         <Link
-          href="/about"
-          className="group relative min-h-[280px] overflow-hidden bg-cream-deep"
+          href="/buying-guide"
+          className="group relative min-h-[240px] overflow-hidden bg-cream-deep sm:min-h-[280px]"
         >
           <Image
             src={siteImages.leafAccent}
             alt=""
             fill
             className="object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-40"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="relative flex h-full min-h-[280px] flex-col justify-end p-8 text-forest transition-colors duration-300 group-hover:bg-mist/50">
+          <div className="relative flex h-full min-h-[240px] flex-col justify-end p-5 text-forest transition-colors duration-300 group-hover:bg-mist/50 sm:min-h-[280px] sm:p-8">
             <p className="text-[11px] uppercase tracking-[0.2em] text-leaf">
               Buying guide
             </p>
-            <h3 className="mt-3 font-display text-3xl">
-              How we choose what to make
+            <h3 className="mt-3 font-display text-2xl sm:text-3xl">
+              How to choose what to buy
             </h3>
             <p className="mt-3 max-w-sm text-sm text-muted">
-              A short read on focus, process, and why the catalog grows slowly
-              on purpose.
+              Compare products, pick a pack size, and see which order path fits
+              your kitchen.
             </p>
             <span className="mt-6 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-200 group-hover:text-leaf">
               Learn more →
@@ -500,11 +522,13 @@ export function ImpactStrip() {
         <h2 className="mt-3 text-center font-display text-3xl md:text-4xl">
           Steady standards. Expanding range.
         </h2>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display text-4xl md:text-5xl">{stat.value}</p>
-              <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-cream/70">
+              <p className="font-display text-3xl md:text-4xl lg:text-5xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-cream/70 sm:text-[11px] sm:tracking-[0.18em]">
                 {stat.label}
               </p>
             </div>
@@ -623,7 +647,7 @@ export function WhyPrimeweaves() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <p className="text-[11px] uppercase tracking-[0.28em] text-leaf">
-            Why Primeweaves
+            Why Prime Weaves
           </p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl text-forest md:text-5xl">
             A brand built to grow without getting careless.
@@ -778,7 +802,7 @@ export function OurStory() {
           <div className="relative aspect-[4/5] overflow-hidden bg-mist">
             <Image
               src={siteImages.whyUs}
-              alt="Natural ingredients representing Primeweaves"
+              alt="Natural ingredients representing Prime Weaves"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -793,7 +817,7 @@ export function OurStory() {
             From a home remedy to a gift for the world.
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-muted">
-            Primeweaves began the way many good food stories do — in the home.
+            Prime Weaves began the way many good food stories do — in the home.
             Simple remedies and everyday staples, made carefully for family
             tables long before they were meant for shelves.
           </p>
@@ -852,7 +876,7 @@ export function RetailExport() {
               </h3>
               <p className="mt-4 text-sm text-muted">
                 Browse the current range, choose a pack, and send an order
-                request. We confirm by email.
+                request. We confirm by email and WhatsApp.
               </p>
               <Link href="/order" className="btn-primary mt-8">
                 Shop for Home
@@ -890,7 +914,7 @@ export function OrderBanner() {
     { num: "01", title: "Choose product", text: "From the current range." },
     { num: "02", title: "Select quantity", text: "Pack size and units." },
     { num: "03", title: "Share details", text: "Contact and address." },
-    { num: "04", title: "Confirmation", text: "We reply by email." },
+    { num: "04", title: "Confirmation", text: "We reply by email and WhatsApp." },
   ];
 
   return (
@@ -901,7 +925,7 @@ export function OrderBanner() {
             <p className="text-[11px] uppercase tracking-[0.28em]">
               Order by request
             </p>
-            <h2 className="mt-3 font-display text-4xl md:text-5xl">
+            <h2 className="mt-3 font-display text-3xl md:text-4xl lg:text-5xl">
               Tell us what you need.
             </h2>
             <p className="mt-4 max-w-xl text-ink/75">
@@ -940,7 +964,7 @@ export function OrderBanner() {
           <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden bg-gold-deep/20">
             <Image
               src="/products/hero-pair.png"
-              alt="Primeweaves products"
+              alt="Prime Weaves products"
               fill
               className="object-cover"
               sizes="400px"

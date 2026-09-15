@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import type { ProductBenefit } from "@/lib/products";
 
 type TabKey = "how" | "benefit" | "ingredients" | "returns";
 
 type ProductTabsProps = {
   howToUse: string[];
-  benefits: string[];
+  benefits: ProductBenefit[];
   ingredients: string[];
 };
 
 const labels: { key: TabKey; label: string }[] = [
   { key: "how", label: "How to use" },
-  { key: "benefit", label: "Benefit" },
+  { key: "benefit", label: "Benefits" },
   { key: "ingredients", label: "Ingredients" },
   { key: "returns", label: "Return Policy" },
 ];
@@ -22,11 +23,11 @@ export function ProductTabs({
   benefits,
   ingredients,
 }: ProductTabsProps) {
-  const [active, setActive] = useState<TabKey>("how");
+  const [active, setActive] = useState<TabKey>("benefit");
 
   return (
     <div className="mt-10 border-t border-forest/10 pt-8">
-      <div className="flex flex-wrap gap-2 border-b border-forest/10 pb-3">
+      <div className="-mx-1 flex gap-2 overflow-x-auto border-b border-forest/10 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {labels.map((tab) => {
           const isActive = active === tab.key;
           return (
@@ -34,7 +35,7 @@ export function ProductTabs({
               key={tab.key}
               type="button"
               onClick={() => setActive(tab.key)}
-              className={`px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors duration-200 ${
+              className={`shrink-0 px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors duration-200 ${
                 isActive
                   ? "bg-forest text-cream"
                   : "bg-transparent text-muted hover:bg-mist hover:text-forest"
@@ -49,21 +50,32 @@ export function ProductTabs({
         {active === "how" ? (
           <ul className="space-y-3">
             {howToUse.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-leaf" />
+                <span>{item}</span>
+              </li>
             ))}
           </ul>
         ) : null}
         {active === "benefit" ? (
-          <ul className="space-y-3">
+          <ul className="space-y-5">
             {benefits.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item.title}>
+                <p className="font-medium text-forest">{item.title}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  {item.text}
+                </p>
+              </li>
             ))}
           </ul>
         ) : null}
         {active === "ingredients" ? (
           <ul className="space-y-3">
             {ingredients.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="flex gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span>{item}</span>
+              </li>
             ))}
           </ul>
         ) : null}

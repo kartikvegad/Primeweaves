@@ -5,7 +5,7 @@ import { SignInForm } from "@/components/auth/SignInForm";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Sign in to your Primeweaves account.",
+  description: "Sign in to your Prime Weaves account.",
 };
 
 export default function SignInPage() {
@@ -23,7 +23,7 @@ export default function SignInPage() {
         <div className="absolute bottom-0 p-12">
           <p className="font-display text-5xl text-cream">Welcome back.</p>
           <p className="mt-3 max-w-sm text-cream/70">
-            Manage orders, save favorites, and continue your Primeweaves
+            Manage orders, save favorites, and continue your Prime Weaves
             journey.
           </p>
         </div>

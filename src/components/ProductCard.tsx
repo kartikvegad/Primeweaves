@@ -29,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
       <div className="mt-5 flex flex-1 flex-col">
         <Link href={`/products/${product.slug}`} className="group/title">
-          <h3 className="font-display text-3xl text-forest transition-colors duration-200 group-hover/title:text-leaf">
+          <h3 className="font-display text-2xl text-forest transition-colors duration-200 group-hover/title:text-leaf md:text-3xl">
             {product.name}
           </h3>
           <p className="mt-1 text-sm text-muted">{product.tagline}</p>

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "What products does Primeweaves offer?",
+    q: "What products does Prime Weaves offer?",
     a: "We currently offer a focused range of natural food products, starting with moringa leaf powder and traditionally cultured ghee. More products will be added carefully over time.",
   },
   {
@@ -25,15 +25,15 @@ const faqs = [
   },
   {
     q: "Do you handle export orders?",
-    a: "Yes. Primeweaves supports export enquiries alongside retail and wholesale. Tell us your market, volume, and packaging needs when you send a request.",
+    a: "Yes. Prime Weaves supports export enquiries alongside retail and wholesale. Tell us your market, volume, and packaging needs when you send a request.",
   },
   {
     q: "How can I place an order?",
-    a: "Use the Place Order page to choose a product, pack size, quantity, and delivery details. There is no online cart checkout — you send a request and we confirm by email.",
+    a: "Use the Place Order page to choose a product, pack size, quantity, and delivery details. There is no online cart checkout — you send a request and we confirm by email and WhatsApp.",
   },
   {
     q: "How long does order confirmation take?",
-    a: "Most requests are reviewed and answered by email during business hours. Timing can vary with order size and export documentation needs.",
+    a: "Most requests are reviewed and answered by email or WhatsApp during business hours. Timing can vary with order size and export documentation needs.",
   },
   {
     q: "How should products be stored?",

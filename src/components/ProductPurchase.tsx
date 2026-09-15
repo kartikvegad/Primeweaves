@@ -24,7 +24,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
         <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
           Choose pack
         </p>
-        <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-4">
           {product.packs.map((item) => {
             const active = packId === item.id;
             return (
@@ -77,7 +77,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
       </div>
       <p className="text-xs text-muted">
         You’ll share address and contact details on the next step. We confirm
-        every request by email — no online payment yet.
+        every request by email and WhatsApp — no online payment yet.
       </p>
     </div>
   );

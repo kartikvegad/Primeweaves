@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/ProductCard";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Shop Primeweaves natural foods. Current range available now — more products coming soon.",
+    "Shop Prime Weaves natural foods. Current range available now — more products coming soon.",
 };
 
 export default function ShopPage() {
@@ -16,7 +16,7 @@ export default function ShopPage() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-leaf">
-              Shop all
+              Shop
             </p>
             <h1 className="mt-3 font-display text-5xl text-forest md:text-6xl">
               The range

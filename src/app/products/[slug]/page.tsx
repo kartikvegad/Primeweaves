@@ -70,9 +70,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <Reveal delayMs={120}>
             <div>
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                 <div>
-                  <h1 className="font-display text-5xl text-forest md:text-6xl">
+                  <h1 className="font-display text-3xl text-forest sm:text-5xl md:text-6xl">
                     {product.name}
                   </h1>
                   <p className="mt-3 text-sm text-muted">
@@ -80,14 +80,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </p>
                 </div>
                 {product.badge ? (
-                  <span className="shrink-0 bg-mist px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-forest">
+                  <span className="w-fit shrink-0 bg-mist px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-forest">
                     {product.badge}
                   </span>
                 ) : null}
               </div>
 
               <div className="mt-6 flex items-end gap-3">
-                <p className="font-display text-5xl text-forest">
+                <p className="font-display text-3xl text-forest sm:text-5xl">
                   {formatInr(product.price)}
                 </p>
                 {product.compareAt ? (
@@ -101,6 +101,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted">
                 {product.description}
               </p>
+
+              <div className="mt-8 border border-forest/10 bg-mist/40 p-5">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
+                  Why this product
+                </p>
+                <ul className="mt-4 space-y-4">
+                  {product.benefits.map((benefit) => (
+                    <li key={benefit.title}>
+                      <p className="text-sm font-medium text-forest">
+                        {benefit.title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">
+                        {benefit.text}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <div className="mt-8">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
@@ -138,8 +156,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {related.length > 0 ? (
           <Reveal className="mt-24 border-t border-forest/10 pt-16">
             <section>
-              <div className="flex items-end justify-between gap-4">
-                <h2 className="font-display text-4xl text-forest">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+                <h2 className="font-display text-3xl text-forest sm:text-4xl">
                   You might also like
                 </h2>
                 <Link

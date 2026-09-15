@@ -4,6 +4,11 @@ export type PackOption = {
   price: number;
 };
 
+export type ProductBenefit = {
+  title: string;
+  text: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -16,7 +21,7 @@ export type Product = {
   badge?: string;
   description: string;
   howToUse: string[];
-  benefits: string[];
+  benefits: ProductBenefit[];
   ingredients: string[];
   image: string;
   gallery: string[];
@@ -40,7 +45,7 @@ export const products: Product[] = [
     ],
     badge: "Bestseller",
     description:
-      "Primeweaves moringa leaf powder is milled from carefully selected leaves into a fine, versatile powder for everyday use — packed for retail kitchens and bulk or export requirements.",
+      "Prime Weaves moringa leaf powder is milled from carefully selected leaves into a fine, versatile powder for everyday use — packed for retail kitchens and bulk or export requirements.",
     howToUse: [
       "Mix 1–2 teaspoons into warm water, juice, or a smoothie each morning.",
       "Stir into soups, dal, or salad dressings for an earthy green lift.",
@@ -48,10 +53,26 @@ export const products: Product[] = [
       "Use daily for 4–6 weeks for the most consistent results.",
     ],
     benefits: [
-      "Pure leaf powder for everyday nutrition routines",
-      "Fine texture suited to drinks and cooking",
-      "Plant-based and suitable for vegan diets",
-      "Processed with attention to cleanliness and consistency",
+      {
+        title: "Pure leaf powder",
+        text: "Made from selected moringa leaves only — no fillers, stems, or artificial additives — so you know exactly what you are adding to food and drinks.",
+      },
+      {
+        title: "Fine, easy-to-mix texture",
+        text: "Milled to a fine powder that stirs smoothly into smoothies, warm water, soups, and dals without a gritty feel.",
+      },
+      {
+        title: "Everyday plant nutrition",
+        text: "A simple green addition for daily routines — plant-based and suitable for vegan kitchens that want a thoughtful leaf powder on hand.",
+      },
+      {
+        title: "Flexible pack sizes",
+        text: "From small home packs to larger formats for kitchens and trade partners, so you can match quantity to how often you use it.",
+      },
+      {
+        title: "Consistent processing",
+        text: "Cleaned, processed, and packed with attention to batch consistency — the same standard whether you order retail or enquire for bulk.",
+      },
     ],
     ingredients: [
       "100% Moringa oleifera leaf powder",
@@ -82,7 +103,7 @@ export const products: Product[] = [
     ],
     badge: "Signature",
     description:
-      "Primeweaves cultured ghee is prepared with a traditional cultured approach and slow clarification for aroma and richness — packed for modern kitchens, retail shelves, and export buyers.",
+      "Prime Weaves cultured ghee is prepared with a traditional cultured approach and slow clarification for aroma and richness — packed for modern kitchens, retail shelves, and export buyers.",
     howToUse: [
       "Use as a cooking fat for sautéing, roasting, and traditional recipes.",
       "Stir a spoonful into warm milk, coffee, or porridge.",
@@ -90,10 +111,26 @@ export const products: Product[] = [
       "No refrigeration required when kept sealed and moisture-free.",
     ],
     benefits: [
-      "Traditionally cultured and clarified",
-      "Rich aroma for everyday cooking",
-      "High smoke point for sautéing and roasting",
-      "Retail packs with bulk and export enquiry options",
+      {
+        title: "Cultured, then clarified",
+        text: "Prepared with a traditional cultured approach before slow clarification, giving depth of flavour that plain cooking fats often lack.",
+      },
+      {
+        title: "Rich aroma for cooking",
+        text: "A warm, distinctive aroma that suits tadka, roasting, finishing dishes, and everyday Indian kitchen recipes.",
+      },
+      {
+        title: "High smoke point",
+        text: "Stands up well to sautéing and roasting — a reliable fat when you need steady heat without compromising taste.",
+      },
+      {
+        title: "Kitchen-friendly keeping",
+        text: "Store sealed in a cool, dry place with a clean dry spoon. No refrigeration needed when kept moisture-free.",
+      },
+      {
+        title: "Home to wholesale formats",
+        text: "Available in retail packs with bulk and export enquiry options for restaurants, distributors, and partners.",
+      },
     ],
     ingredients: [
       "Cultured dairy base, carefully clarified",

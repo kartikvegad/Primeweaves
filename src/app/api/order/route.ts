@@ -73,12 +73,12 @@ export async function POST(request: Request) {
 
     const toEmail = process.env.ORDER_TO_EMAIL;
     const fromEmail =
-      process.env.ORDER_FROM_EMAIL || "Primeweaves Orders <onboarding@resend.dev>";
+      process.env.ORDER_FROM_EMAIL || "Prime Weaves Orders <onboarding@resend.dev>";
     const apiKey = process.env.RESEND_API_KEY;
 
     const html = `
       <div style="font-family: Arial, sans-serif; color: #1a241c; line-height: 1.5;">
-        <h2 style="margin-bottom: 8px;">New order request — Primeweaves</h2>
+        <h2 style="margin-bottom: 8px;">New order request — Prime Weaves</h2>
         <p style="margin-top: 0; color: #5c6b5f;">A customer submitted an order request from the website.</p>
         <hr style="border: none; border-top: 1px solid #d7ddd0; margin: 20px 0;" />
         <h3>Customer</h3>

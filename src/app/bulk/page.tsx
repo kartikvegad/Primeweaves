@@ -5,7 +5,7 @@ import { BulkQuoteForm } from "@/components/BulkQuoteForm";
 export const metadata: Metadata = {
   title: "Export & Bulk",
   description:
-    "Request bulk and export pricing for Primeweaves moringa powder and cultured ghee.",
+    "Request bulk and export pricing for Prime Weaves moringa powder and cultured ghee.",
 };
 
 export default function BulkPage() {
@@ -20,7 +20,7 @@ export default function BulkPage() {
             Partnership-ready supply for distributors and buyers.
           </h1>
           <p className="mt-5 max-w-2xl text-cream/75 leading-relaxed">
-            Primeweaves supports wholesale and export orders for moringa powder
+            Prime Weaves supports wholesale and export orders for moringa powder
             and cultured ghee — with packaging options sized for your market.
           </p>
         </div>

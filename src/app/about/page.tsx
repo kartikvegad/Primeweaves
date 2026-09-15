@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Primeweaves has manufactured, retailed, and exported moringa powder and ghee since 2018.",
+    "Prime Weaves has manufactured, retailed, and exported moringa powder and ghee since 2018.",
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <section className="relative min-h-[55vh] overflow-hidden bg-forest-deep">
         <Image
           src="/products/ghee-jar-lifestyle.jpg"
-          alt="Primeweaves cultured ghee"
+          alt="Prime Weaves cultured ghee"
           fill
           className="object-cover opacity-55"
           priority
@@ -38,7 +38,7 @@ export default function AboutPage() {
               It started at home. Then it travelled.
             </h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Primeweaves began as a home remedy — simple, careful food made for
+              Prime Weaves began as a home remedy — simple, careful food made for
               family tables. The goodness was never meant to stay in one kitchen.
             </p>
             <p className="mt-4 text-muted leading-relaxed">

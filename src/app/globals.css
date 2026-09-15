@@ -45,12 +45,25 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7.5rem;
+  overflow-x: clip;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+main {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 ::selection {
@@ -207,6 +220,35 @@ body {
   animation: fade-in 1.1s ease-out both;
 }
 
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-spin {
+  animation: logo-spin 2.4s linear infinite;
+}
+
+.splash-curtain {
+  transform: translateY(0);
+  transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.splash-curtain-up {
+  transform: translateY(-105%);
+  pointer-events: none;
+}
+
+html.splash-active,
+html.splash-active body {
+  overflow: hidden;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -237,8 +279,17 @@ body {
   .animate-rise,
   .animate-rise-delay,
   .animate-rise-delay-2,
-  .animate-fade {
+  .animate-fade,
+  .logo-spin {
     animation: none;
+  }
+
+  .splash-curtain {
+    transition: none;
+  }
+
+  .splash-curtain-up {
+    transform: translateY(-105%);
   }
 
   .reveal {
