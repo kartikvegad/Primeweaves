@@ -1,39 +1,70 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const shopLinks = [
+  { href: "/shop", label: "Shop All" },
   { href: "/products/moringa-powder", label: "Moringa Powder" },
   { href: "/products/cultured-ghee", label: "Cultured Ghee" },
-  { href: "/shop", label: "All Products" },
-  { href: "/order", label: "Place Order" },
+  { href: "/#featured", label: "Featured Picks" },
 ];
 
 const helpLinks = [
+  { href: "/#faq", label: "FAQ" },
+  { href: "/order", label: "How to Order" },
   { href: "/contact", label: "Contact" },
-  { href: "/bulk", label: "Export Inquiry" },
+  { href: "/bulk", label: "Bulk Support" },
+];
+
+const aboutLinks = [
   { href: "/about", label: "Our Story" },
-  { href: "/order", label: "Order Request" },
+  { href: "/#why", label: "Why Primeweaves" },
+  { href: "/#qualities", label: "Qualities" },
+  { href: "/#quality", label: "Standards" },
 ];
 
 export function Footer() {
   return (
     <footer className="bg-forest-deep text-cream">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-2 md:px-8 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-2 md:px-8 lg:grid-cols-[1.2fr_1fr_0.8fr_0.8fr_0.8fr]">
         <div>
-          <p className="font-display text-3xl tracking-[0.04em]">PRIMEWEAVES</p>
+          <Image
+            src="/brand/primeweaves-logo.png"
+            alt="Primeweaves"
+            width={88}
+            height={88}
+            className="h-20 w-20 object-contain"
+          />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/70">
-            Manufacturing, retail, and export of pure moringa powder and
-            traditionally cultured ghee since 2018.
+            Natural foods for everyday kitchens and trade partners — manufactured
+            since 2018 with a range built to grow carefully.
           </p>
-          <Link
-            href="/order"
-            className="mt-6 inline-flex rounded-full bg-cream px-5 py-2.5 text-[11px] uppercase tracking-[0.16em] text-forest transition hover:bg-white"
-          >
-            Place Order
-          </Link>
         </div>
 
         <div>
-          <h3 className="text-[11px] uppercase tracking-[0.22em] text-sage-soft">
+          <h3 className="text-[11px] uppercase tracking-[0.22em] text-gold">
+            Stay in the loop
+          </h3>
+          <p className="mt-4 text-sm text-cream/70">
+            Product launches and availability updates.
+          </p>
+          <form className="mt-5 flex overflow-hidden border border-cream/20 bg-forest">
+            <input
+              type="email"
+              required
+              placeholder="Email address"
+              className="w-full bg-transparent px-4 py-3 text-sm text-cream outline-none placeholder:text-cream/40"
+            />
+            <button
+              type="submit"
+              className="bg-gold px-4 text-sm font-semibold text-ink transition hover:bg-gold-deep"
+            >
+              Join
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <h3 className="text-[11px] uppercase tracking-[0.22em] text-gold">
             Shop
           </h3>
           <ul className="mt-4 space-y-3">
@@ -51,7 +82,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[11px] uppercase tracking-[0.22em] text-sage-soft">
+          <h3 className="text-[11px] uppercase tracking-[0.22em] text-gold">
             Help
           </h3>
           <ul className="mt-4 space-y-3">
@@ -69,13 +100,21 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-[11px] uppercase tracking-[0.22em] text-sage-soft">
-            How ordering works
+          <h3 className="text-[11px] uppercase tracking-[0.22em] text-gold">
+            About
           </h3>
-          <p className="mt-4 text-sm text-cream/70">
-            Submit product, quantity, and address. We receive your request by
-            email and confirm next steps — no cart checkout required.
-          </p>
+          <ul className="mt-4 space-y-3">
+            {aboutLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-cream/80 transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -84,13 +123,10 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Primeweaves. All rights reserved.</p>
           <div className="flex gap-5">
             <Link href="/contact" className="hover:text-cream">
-              Privacy
+              Privacy Policy
             </Link>
             <Link href="/contact" className="hover:text-cream">
-              Terms
-            </Link>
-            <Link href="/bulk" className="hover:text-cream">
-              Export
+              Terms of Service
             </Link>
           </div>
         </div>

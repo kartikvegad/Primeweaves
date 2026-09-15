@@ -1,21 +1,43 @@
 import {
+  BrandIntro,
+  DualBanners,
+  FeaturedPicks,
   Hero,
+  ImpactStrip,
   OrderBanner,
+  OurStory,
   ProductShowcase,
-  StatsBar,
-  ValueBar,
-  WhyUs,
+  QualitiesBar,
+  QualitySection,
+  RetailExport,
+  SourceToPack,
+  TrustBar,
+  WaysToUse,
+  WhyPrimeweaves,
 } from "@/components/home/sections";
+import { HowItsMade } from "@/components/home/HowItsMade";
+import { FaqSection } from "@/components/home/Faq";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatsBar />
+      <QualitiesBar />
+      <BrandIntro />
+      <FeaturedPicks />
+      <DualBanners />
+      <ImpactStrip />
+      <TrustBar />
       <ProductShowcase />
-      <WhyUs />
+      <HowItsMade />
+      <SourceToPack />
+      <WhyPrimeweaves />
+      <QualitySection />
+      <WaysToUse />
+      <OurStory />
+      <RetailExport />
+      <FaqSection />
       <OrderBanner />
-      <ValueBar />
     </>
   );
 }

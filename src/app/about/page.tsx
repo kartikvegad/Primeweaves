@@ -13,19 +13,19 @@ export default function AboutPage() {
     <div className="bg-cream">
       <section className="relative min-h-[55vh] overflow-hidden bg-forest-deep">
         <Image
-          src="/images/moringa-brisbane.jpg"
-          alt="Moringa oleifera leaves and flowers"
+          src="/products/ghee-jar-lifestyle.jpg"
+          alt="Primeweaves cultured ghee"
           fill
           className="object-cover opacity-55"
           priority
         />
         <div className="relative mx-auto flex min-h-[55vh] max-w-7xl items-end px-5 pb-16 md:px-8">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-sage-soft">
-              Our Story
+            <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
+              Our story · Since 2018
             </p>
             <h1 className="mt-3 max-w-3xl font-display text-5xl text-cream md:text-6xl">
-              Five years of weaving purity into every pack.
+              From a home remedy to a gift for the world.
             </h1>
           </div>
         </div>
@@ -35,16 +35,21 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-4xl text-forest">
-              Started in 2018. Focused on what matters.
+              It started at home. Then it travelled.
             </h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Primeweaves began with a clear brief: manufacture clean, consistent
-              moringa powder and cultured ghee that can travel — from our
-              facilities to retail shelves and export partners worldwide.
+              Primeweaves began as a home remedy — simple, careful food made for
+              family tables. The goodness was never meant to stay in one kitchen.
             </p>
             <p className="mt-4 text-muted leading-relaxed">
-              We stay focused on these two products while preparing the
-              foundation to expand the catalog thoughtfully later.
+              Since 2018 we have manufactured, retailed, and supported export
+              conversations so that same care can reach homes and partners
+              worldwide. What we make still has to earn its place the way a home
+              remedy does: with honesty, process, and consistency.
+            </p>
+            <p className="mt-4 text-muted leading-relaxed">
+              The catalog grows carefully. New products join only when they can
+              carry the same standard that began under one roof.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -55,7 +60,7 @@ export default function AboutPage() {
               { label: "Model", value: "Mfg · Retail · Export" },
             ].map((item) => (
               <div key={item.label} className="bg-mist/70 p-6">
-                <p className="text-xs uppercase tracking-[0.18em] text-sage">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-leaf">
                   {item.label}
                 </p>
                 <p className="mt-3 font-display text-3xl text-forest">
@@ -78,7 +83,7 @@ export default function AboutPage() {
             },
             {
               title: "Export",
-              text: "Bulk supply and documentation support for distributors and international buyers.",
+              text: "Bulk supply conversations and packaging support for distributors and international buyers.",
             },
           ].map((item) => (
             <div key={item.title} className="border-t border-sage/40 pt-6">
@@ -90,12 +95,15 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <div className="mt-16">
+        <div className="mt-16 flex flex-wrap gap-3">
+          <Link href="/order" className="btn-primary">
+            Place an order
+          </Link>
           <Link
-            href="/contact"
-            className="inline-flex rounded-full bg-forest px-7 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-cream transition hover:bg-forest-deep"
+            href="/bulk"
+            className="inline-flex border border-forest/25 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-forest"
           >
-            Talk to us
+            Bulk / export
           </Link>
         </div>
       </section>

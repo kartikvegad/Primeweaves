@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Primeweaves",
   },
   description:
-    "Primeweaves manufactures, retails, and exports pure moringa powder and traditionally cultured ghee. Established in 2018 with five years of export experience.",
+    "Primeweaves manufactures natural foods for retail and export. A growing range starting with carefully made essentials since 2018.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

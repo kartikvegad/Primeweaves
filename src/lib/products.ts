@@ -20,14 +20,14 @@ export type Product = {
   ingredients: string[];
   image: string;
   gallery: string[];
-  accent: "moringa" | "ghee";
+  accent: string;
 };
 
 export const products: Product[] = [
   {
     slug: "moringa-powder",
     name: "Moringa Powder",
-    tagline: "Pure leaf powder for daily vitality",
+    tagline: "Finely ground · Naturally nutritious",
     category: "Superfood powder",
     size: "100g – 1kg",
     price: 399,
@@ -40,7 +40,7 @@ export const products: Product[] = [
     ],
     badge: "Bestseller",
     description:
-      "Primeweaves moringa powder is milled from carefully selected Moringa oleifera leaves, steam-sterilized for purity, and packed for retail and export. A fine green powder for smoothies, teas, and everyday cooking.",
+      "Primeweaves moringa leaf powder is milled from carefully selected leaves into a fine, versatile powder for everyday use — packed for retail kitchens and bulk or export requirements.",
     howToUse: [
       "Mix 1–2 teaspoons into warm water, juice, or a smoothie each morning.",
       "Stir into soups, dal, or salad dressings for an earthy green lift.",
@@ -48,29 +48,29 @@ export const products: Product[] = [
       "Use daily for 4–6 weeks for the most consistent results.",
     ],
     benefits: [
-      "Naturally rich in vitamins A, C, and iron",
-      "Supports everyday energy and nutritional balance",
+      "Pure leaf powder for everyday nutrition routines",
+      "Fine texture suited to drinks and cooking",
       "Plant-based and suitable for vegan diets",
-      "Processed in hygienic manufacturing facilities",
+      "Processed with attention to cleanliness and consistency",
     ],
     ingredients: [
       "100% Moringa oleifera leaf powder",
       "No fillers, stems, or artificial additives",
-      "Steam sterilized for microbial control",
+      "Packed for retail and bulk formats",
     ],
-    image: "/images/moringa-powder-pack.jpg",
+    image: "/products/moringa-pouch.jpg",
     gallery: [
-      "/images/moringa-powder-pack.jpg",
-      "/images/green-powder-bowl-real.jpg",
-      "/images/moringa-leaves-pexels.jpg",
-      "/images/moringa-plant.jpg",
+      "/products/moringa-pouch.jpg",
+      "/products/moringa-jar-branded.png",
+      "/products/moringa-jar-linen.png",
+      "/products/moringa-pour.png",
     ],
     accent: "moringa",
   },
   {
     slug: "cultured-ghee",
     name: "Cultured Ghee",
-    tagline: "Traditionally clarified, export-ready purity",
+    tagline: "Traditionally prepared · Rich in taste",
     category: "Clarified butter",
     size: "250ml – 1L",
     price: 649,
@@ -82,7 +82,7 @@ export const products: Product[] = [
     ],
     badge: "Signature",
     description:
-      "Primeweaves cultured ghee is prepared using traditional clarification methods that remove milk solids while preserving aroma and richness. Packed for kitchens, retail shelves, and export buyers.",
+      "Primeweaves cultured ghee is prepared with a traditional cultured approach and slow clarification for aroma and richness — packed for modern kitchens, retail shelves, and export buyers.",
     howToUse: [
       "Use as a cooking fat for sautéing, roasting, and traditional recipes.",
       "Stir a spoonful into warm milk, coffee, or porridge.",
@@ -91,21 +91,21 @@ export const products: Product[] = [
     ],
     benefits: [
       "Traditionally cultured and clarified",
-      "Lactose-free when milk solids are fully removed",
-      "High smoke point for everyday cooking",
-      "Manufactured and packed for retail and export",
+      "Rich aroma for everyday cooking",
+      "High smoke point for sautéing and roasting",
+      "Retail packs with bulk and export enquiry options",
     ],
     ingredients: [
-      "Cultured butter from carefully sourced milk",
+      "Cultured dairy base, carefully clarified",
       "No preservatives or artificial flavors",
-      "Slow-simmered for depth of flavor",
+      "Slow-prepared for depth of flavour",
     ],
-    image: "/images/ghee-jar-spoon.jpg",
+    image: "/products/ghee-jar-lifestyle.jpg",
     gallery: [
-      "/images/ghee-jar-spoon.jpg",
-      "/images/ghee-clarified.jpg",
-      "/images/ghee-alt.jpg",
-      "/images/ghee-cooking.jpg",
+      "/products/ghee-jar-lifestyle.jpg",
+      "/products/ghee-jar-branded.png",
+      "/products/ghee-jar-green-gold.png",
+      "/products/ghee-scoop.png",
     ],
     accent: "ghee",
   },

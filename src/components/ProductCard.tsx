@@ -8,32 +8,30 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const bg =
-    product.accent === "moringa" ? "bg-mist" : "bg-[color:var(--cream-deep)]";
-
   return (
     <article className="group flex h-full flex-col">
       <Link href={`/products/${product.slug}`} className="block">
-        <div
-          className={`relative aspect-[5/6] overflow-hidden ${bg} transition duration-500 group-hover:shadow-[0_24px_60px_rgba(31,51,38,0.14)]`}
-        >
+        <div className="relative aspect-[4/5] overflow-hidden bg-mist ring-1 ring-transparent transition-[ring-color,background-color] duration-300 group-hover:ring-leaf/40">
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-cover transition duration-700 group-hover:scale-[1.03]"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 40vw"
           />
           {product.badge ? (
-            <span className="absolute left-4 top-4 bg-forest px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cream">
+            <span className="absolute left-4 top-4 bg-forest px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cream transition-colors duration-200 group-hover:bg-forest-deep">
               {product.badge}
             </span>
           ) : null}
+          <div className="pointer-events-none absolute inset-0 bg-forest/0 transition-colors duration-300 group-hover:bg-forest/10" />
         </div>
       </Link>
       <div className="mt-5 flex flex-1 flex-col">
-        <Link href={`/products/${product.slug}`}>
-          <h3 className="font-display text-3xl text-forest">{product.name}</h3>
+        <Link href={`/products/${product.slug}`} className="group/title">
+          <h3 className="font-display text-3xl text-forest transition-colors duration-200 group-hover/title:text-leaf">
+            {product.name}
+          </h3>
           <p className="mt-1 text-sm text-muted">{product.tagline}</p>
         </Link>
         <div className="mt-4 flex items-end justify-between gap-3">
@@ -43,10 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </p>
             <p className="mt-1 text-xs text-muted">{product.size}</p>
           </div>
-          <Link
-            href={`/order?product=${product.slug}`}
-            className="inline-flex rounded-full bg-forest px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.16em] text-cream transition hover:bg-forest-deep"
-          >
+          <Link href={`/order?product=${product.slug}`} className="btn-primary !px-4 !py-2.5 !text-[10px]">
             Order
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BulkQuoteForm } from "@/components/BulkQuoteForm";
 
 export const metadata: Metadata = {
   title: "Export & Bulk",
@@ -47,82 +48,19 @@ export default function BulkPage() {
             </ul>
             <p className="mt-8 text-sm text-muted">
               Prefer a quick conversation?{" "}
-              <Link href="/contact" className="text-forest underline underline-offset-4">
+              <Link
+                href="/contact"
+                className="text-forest underline underline-offset-4 transition-colors duration-200 hover:text-leaf"
+              >
                 Contact our team
               </Link>
               .
             </p>
           </div>
 
-          <form className="border border-forest/10 bg-white/50 p-6 md:p-8">
-            <h3 className="font-display text-3xl text-forest">
-              Request a quote
-            </h3>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <Field label="Company" name="company" required />
-              <Field label="Contact name" name="name" required />
-              <Field label="Email" name="email" type="email" required />
-              <Field label="Country" name="country" required />
-            </div>
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-                Product interest
-                <select
-                  name="product"
-                  className="mt-2 w-full border border-forest/15 bg-cream px-4 py-3 text-sm text-forest outline-none"
-                  defaultValue="both"
-                >
-                  <option value="moringa">Moringa Powder</option>
-                  <option value="ghee">Cultured Ghee</option>
-                  <option value="both">Both</option>
-                </select>
-              </label>
-              <Field label="Estimated volume" name="volume" />
-            </div>
-            <div className="mt-5">
-              <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-                Notes
-                <textarea
-                  name="notes"
-                  rows={5}
-                  className="mt-2 w-full border border-forest/15 bg-cream px-4 py-3 text-sm text-forest outline-none"
-                  placeholder="Target market, pack sizes, timelines…"
-                />
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="mt-6 bg-forest px-7 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-cream transition hover:bg-forest-deep"
-            >
-              Submit inquiry
-            </button>
-          </form>
+          <BulkQuoteForm />
         </div>
       </section>
     </div>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-      {label}
-      <input
-        name={name}
-        type={type}
-        required={required}
-        className="mt-2 w-full border border-forest/15 bg-cream px-4 py-3 text-sm text-forest outline-none transition focus:border-forest"
-      />
-    </label>
   );
 }

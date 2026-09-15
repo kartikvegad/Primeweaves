@@ -26,21 +26,24 @@ export function ProductTabs({
 
   return (
     <div className="mt-10 border-t border-forest/10 pt-8">
-      <div className="flex flex-wrap gap-x-6 gap-y-3 border-b border-forest/10 pb-3">
-        {labels.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            onClick={() => setActive(tab.key)}
-            className={`text-xs uppercase tracking-[0.16em] transition ${
-              active === tab.key
-                ? "text-forest underline decoration-sage underline-offset-8"
-                : "text-muted hover:text-forest"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="flex flex-wrap gap-2 border-b border-forest/10 pb-3">
+        {labels.map((tab) => {
+          const isActive = active === tab.key;
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setActive(tab.key)}
+              className={`px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors duration-200 ${
+                isActive
+                  ? "bg-forest text-cream"
+                  : "bg-transparent text-muted hover:bg-mist hover:text-forest"
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
       <div className="mt-6 text-sm leading-relaxed text-muted">
         {active === "how" ? (

@@ -3,8 +3,16 @@
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { formatInr, products } from "@/lib/products";
+import { CustomSelect } from "@/components/ui/CustomSelect";
+import { QuantityStepper } from "@/components/ui/QuantityStepper";
 
 type Status = "idle" | "loading" | "success" | "error";
+
+const orderTypeOptions = [
+  { value: "retail", label: "Retail", hint: "Home & small orders" },
+  { value: "bulk", label: "Bulk / Wholesale", hint: "Larger supply needs" },
+  { value: "export", label: "Export", hint: "International enquiry" },
+];
 
 export function OrderForm() {
   const searchParams = useSearchParams();
@@ -36,6 +44,18 @@ export function OrderForm() {
     product.packs.find((item) => item.id === packId) || product.packs[0];
   const estimated = (pack?.price || 0) * quantity;
 
+  const productOptions = products.map((item) => ({
+    value: item.slug,
+    label: item.name,
+    hint: item.tagline,
+  }));
+
+  const packOptions = product.packs.map((item) => ({
+    value: item.id,
+    label: item.label,
+    hint: formatInr(item.price),
+  }));
+
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -65,7 +85,10 @@ export function OrderForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = (await response.json()) as { error?: string; message?: string };
+      const data = (await response.json()) as {
+        error?: string;
+        message?: string;
+      };
 
       if (!response.ok) {
         setStatus("error");
@@ -87,96 +110,61 @@ export function OrderForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
-      <section className="space-y-4">
-        <h2 className="font-display text-2xl text-forest">Product</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-            Product
-            <select
-              value={productSlug}
-              onChange={(e) => {
-                const next = products.find((p) => p.slug === e.target.value);
-                setProductSlug(e.target.value);
-                setPackId(next?.packs[0]?.id || "");
-              }}
-              className="field mt-2"
-            >
-              {products.map((item) => (
-                <option key={item.slug} value={item.slug}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </label>
+    <form onSubmit={onSubmit} className="space-y-10">
+      <section className="space-y-5">
+        <h2 className="font-display text-3xl text-forest">Product</h2>
 
-          <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-            Pack size
-            <select
-              value={pack?.id}
-              onChange={(e) => setPackId(e.target.value)}
-              className="field mt-2"
-            >
-              {product.packs.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.label} — {formatInr(item.price)}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <CustomSelect
+            label="Product"
+            value={productSlug}
+            options={productOptions}
+            onChange={(nextSlug) => {
+              const next = products.find((p) => p.slug === nextSlug);
+              setProductSlug(nextSlug);
+              setPackId(next?.packs[0]?.id || "");
+            }}
+          />
 
-          <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-            Quantity
-            <div className="mt-2 flex items-center border border-forest/15 bg-white">
-              <button
-                type="button"
-                className="px-4 py-3 text-forest hover:bg-mist"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              >
-                −
-              </button>
-              <input
-                type="number"
-                min={1}
-                value={quantity}
-                onChange={(e) =>
-                  setQuantity(Math.max(1, Number(e.target.value) || 1))
-                }
-                className="w-full border-0 bg-transparent py-3 text-center text-sm outline-none"
-              />
-              <button
-                type="button"
-                className="px-4 py-3 text-forest hover:bg-mist"
-                onClick={() => setQuantity((q) => q + 1)}
-              >
-                +
-              </button>
-            </div>
-          </label>
+          <CustomSelect
+            label="Pack size"
+            value={pack?.id || ""}
+            options={packOptions}
+            onChange={setPackId}
+          />
 
-          <label className="block text-xs uppercase tracking-[0.16em] text-muted">
-            Order type
-            <select
-              value={orderType}
-              onChange={(e) =>
-                setOrderType(e.target.value as "retail" | "bulk" | "export")
-              }
-              className="field mt-2"
-            >
-              <option value="retail">Retail</option>
-              <option value="bulk">Bulk / Wholesale</option>
-              <option value="export">Export</option>
-            </select>
-          </label>
+          <QuantityStepper
+            value={quantity}
+            onChange={setQuantity}
+          />
+
+          <CustomSelect
+            label="Order type"
+            value={orderType}
+            options={orderTypeOptions}
+            onChange={(value) =>
+              setOrderType(value as "retail" | "bulk" | "export")
+            }
+          />
         </div>
-        <p className="rounded-sm bg-mist/70 px-4 py-3 text-sm text-forest">
-          Estimated total: <strong>{formatInr(estimated)}</strong>
-          <span className="text-muted"> · Final quote confirmed by our team</span>
-        </p>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border border-forest/10 bg-mist/60 px-5 py-4">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
+              Estimated total
+            </p>
+            <p className="mt-1 font-display text-3xl text-forest">
+              {formatInr(estimated)}
+            </p>
+          </div>
+          <p className="max-w-xs text-sm text-muted">
+            Final quote confirmed by our team — no online payment yet.
+          </p>
+        </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="font-display text-2xl text-forest">Your details</h2>
+      <section className="space-y-5">
+        <h2 className="font-display text-3xl text-forest">Your details</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Full name" name="name" required />
           <Field label="Email" name="email" type="email" required />
@@ -184,8 +172,8 @@ export function OrderForm() {
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="font-display text-2xl text-forest">Delivery address</h2>
+      <section className="space-y-5">
+        <h2 className="font-display text-3xl text-forest">Delivery address</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <Field label="Address line 1" name="addressLine1" required />
@@ -198,13 +186,13 @@ export function OrderForm() {
           <Field label="Pincode / ZIP" name="pincode" required />
           <Field label="Country" name="country" defaultValue="India" required />
         </div>
-        <label className="block text-xs uppercase tracking-[0.16em] text-muted">
+        <label className="block text-[11px] uppercase tracking-[0.16em] text-muted">
           Notes (optional)
           <textarea
             name="notes"
             rows={4}
             placeholder="Preferred delivery window, packaging needs, etc."
-            className="field mt-2 resize-y"
+            className="field mt-2 resize-y transition-colors duration-200 focus:border-forest focus:bg-mist/30"
           />
         </label>
       </section>
@@ -223,7 +211,7 @@ export function OrderForm() {
       <button
         type="submit"
         disabled={status === "loading" || status === "success"}
-        className="w-full bg-forest px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-cream transition hover:bg-forest-deep disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === "loading" ? "Sending request…" : "Send order request"}
       </button>
@@ -245,14 +233,14 @@ function Field({
   defaultValue?: string;
 }) {
   return (
-    <label className="block text-xs uppercase tracking-[0.16em] text-muted">
+    <label className="block text-[11px] uppercase tracking-[0.16em] text-muted">
       {label}
       <input
         name={name}
         type={type}
         required={required}
         defaultValue={defaultValue}
-        className="field mt-2"
+        className="field mt-2 transition-colors duration-200 focus:border-forest focus:bg-mist/30"
       />
     </label>
   );

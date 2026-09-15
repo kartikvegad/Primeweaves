@@ -13,7 +13,7 @@ export default function SignInPage() {
     <div className="grid min-h-[80vh] lg:grid-cols-2">
       <div className="relative hidden overflow-hidden bg-forest lg:block">
         <Image
-          src="/images/moringa-leaves-2.jpg"
+          src="/products/moringa-pouch.jpg"
           alt=""
           fill
           className="object-cover opacity-60"

@@ -1,7 +1,8 @@
-/** Site imagery — each file used in at most one primary placement. */
+/** Branded Primeweaves product imagery only. */
 export const siteImages = {
-  hero: "/images/moringa-sunlight.jpg",
-  whyUs: "/images/moringa-leaves-malawi.jpg",
-  about: "/images/moringa-brisbane.jpg",
-  process: "/images/moringa-leaves-2.jpg",
+  hero: "/products/hero-pair.png",
+  whyUs: "/products/moringa-pouch.jpg",
+  about: "/products/ghee-jar-lifestyle.jpg",
+  process: "/products/moringa-pour.png",
+  leafAccent: "/products/ghee-kitchen.png",
 } as const;
