@@ -17,11 +17,15 @@ const faqs = [
   },
   {
     q: "What pack sizes are available?",
-    a: "Moringa powder is offered from 100g to 1kg packs. Cultured ghee is offered from 250ml to 1 litre. Larger or custom pack needs can be discussed through bulk and export enquiry.",
+    a: "Both moringa powder and cultured ghee are offered in 200 g, 500 g, 750 g, and 1 kg packs. Larger or custom pack needs can be discussed through bulk and export enquiry.",
+  },
+  {
+    q: "Do you list prices online?",
+    a: "No. Pricing is not listed on the site. Choose a pack size and request a quotation — we reply with pricing by email and WhatsApp based on what you need.",
   },
   {
     q: "Do you offer bulk quantities?",
-    a: "Yes. Share your product, estimated volume, pack preference, and destination details on the order or bulk enquiry form and our team will follow up.",
+    a: "Yes. Share your product, estimated volume, pack preference, and destination details on the quotation or bulk enquiry form and our team will follow up.",
   },
   {
     q: "Do you handle export orders?",
@@ -29,10 +33,10 @@ const faqs = [
   },
   {
     q: "How can I place an order?",
-    a: "Use the Place Order page to choose a product, pack size, quantity, and delivery details. There is no online cart checkout — you send a request and we confirm by email and WhatsApp.",
+    a: "Use the Request a Quotation page to choose a product, pack size, quantity, and delivery details. There is no online cart or listed pricing — you request a quotation and we reply by email and WhatsApp.",
   },
   {
-    q: "How long does order confirmation take?",
+    q: "How long does a quotation take?",
     a: "Most requests are reviewed and answered by email or WhatsApp during business hours. Timing can vary with order size and export documentation needs.",
   },
   {

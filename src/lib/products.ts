@@ -1,7 +1,6 @@
 export type PackOption = {
   id: string;
   label: string;
-  price: number;
 };
 
 export type ProductBenefit = {
@@ -15,8 +14,6 @@ export type Product = {
   tagline: string;
   category: string;
   size: string;
-  price: number;
-  compareAt?: number;
   packs: PackOption[];
   badge?: string;
   description: string;
@@ -28,21 +25,21 @@ export type Product = {
   accent: string;
 };
 
+const standardPacks: PackOption[] = [
+  { id: "200g", label: "200 g" },
+  { id: "500g", label: "500 g" },
+  { id: "750g", label: "750 g" },
+  { id: "1kg", label: "1 kg" },
+];
+
 export const products: Product[] = [
   {
     slug: "moringa-powder",
     name: "Moringa Powder",
     tagline: "Finely ground · Naturally nutritious",
     category: "Superfood powder",
-    size: "100g – 1kg",
-    price: 399,
-    compareAt: 499,
-    packs: [
-      { id: "100g", label: "100g", price: 399 },
-      { id: "250g", label: "250g", price: 899 },
-      { id: "500g", label: "500g", price: 1599 },
-      { id: "1kg", label: "1kg", price: 2899 },
-    ],
+    size: "200 g – 1 kg",
+    packs: standardPacks,
     badge: "Bestseller",
     description:
       "Prime Weaves moringa leaf powder is milled from carefully selected leaves into a fine, versatile powder for everyday use — packed for retail kitchens and bulk or export requirements.",
@@ -67,11 +64,11 @@ export const products: Product[] = [
       },
       {
         title: "Flexible pack sizes",
-        text: "From small home packs to larger formats for kitchens and trade partners, so you can match quantity to how often you use it.",
+        text: "Available in 200 g, 500 g, 750 g, and 1 kg — choose a size and request a quotation for your needs.",
       },
       {
         title: "Consistent processing",
-        text: "Cleaned, processed, and packed with attention to batch consistency — the same standard whether you order retail or enquire for bulk.",
+        text: "Cleaned, processed, and packed with attention to batch consistency — the same standard whether you enquire for retail or bulk.",
       },
     ],
     ingredients: [
@@ -93,14 +90,8 @@ export const products: Product[] = [
     name: "Cultured Ghee",
     tagline: "Traditionally prepared · Rich in taste",
     category: "Clarified butter",
-    size: "250ml – 1L",
-    price: 649,
-    compareAt: 799,
-    packs: [
-      { id: "250ml", label: "250ml", price: 649 },
-      { id: "500ml", label: "500ml", price: 1199 },
-      { id: "1L", label: "1 Litre", price: 2199 },
-    ],
+    size: "200 g – 1 kg",
+    packs: standardPacks,
     badge: "Signature",
     description:
       "Prime Weaves cultured ghee is prepared with a traditional cultured approach and slow clarification for aroma and richness — packed for modern kitchens, retail shelves, and export buyers.",
@@ -129,7 +120,7 @@ export const products: Product[] = [
       },
       {
         title: "Home to wholesale formats",
-        text: "Available in retail packs with bulk and export enquiry options for restaurants, distributors, and partners.",
+        text: "Available in 200 g, 500 g, 750 g, and 1 kg — request a quotation for the pack size that fits your kitchen or trade needs.",
       },
     ],
     ingredients: [
@@ -150,12 +141,4 @@ export const products: Product[] = [
 
 export function getProduct(slug: string) {
   return products.find((product) => product.slug === slug);
-}
-
-export function formatInr(amount: number) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(amount);
 }

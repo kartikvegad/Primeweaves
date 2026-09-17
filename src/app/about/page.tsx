@@ -97,7 +97,7 @@ export default function AboutPage() {
 
         <div className="mt-16 flex flex-wrap gap-3">
           <Link href="/order" className="btn-primary">
-            Place an order
+            Request a quotation
           </Link>
           <Link
             href="/bulk"

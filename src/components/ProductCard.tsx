@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/lib/products";
-import { formatInr } from "@/lib/products";
 
 type ProductCardProps = {
   product: Product;
@@ -37,12 +36,15 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-4 flex items-end justify-between gap-3">
           <div>
             <p className="text-sm font-medium text-forest">
-              From {formatInr(product.price)}
+              {product.packs.map((p) => p.label).join(" · ")}
             </p>
-            <p className="mt-1 text-xs text-muted">{product.size}</p>
+            <p className="mt-1 text-xs text-muted">Request a quotation</p>
           </div>
-          <Link href={`/order?product=${product.slug}`} className="btn-primary !px-4 !py-2.5 !text-[10px]">
-            Order
+          <Link
+            href={`/order?product=${product.slug}`}
+            className="btn-primary !px-4 !py-2.5 !text-[10px]"
+          >
+            Quote
           </Link>
         </div>
       </div>

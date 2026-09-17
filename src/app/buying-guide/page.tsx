@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { formatInr, products } from "@/lib/products";
+import { products } from "@/lib/products";
 import { Reveal } from "@/components/home/Reveal";
 
 export const metadata: Metadata = {
   title: "Buying Guide",
   description:
-    "A practical guide to choosing Prime Weaves moringa powder or cultured ghee, picking pack sizes, and placing your order.",
+    "A practical guide to choosing Prime Weaves moringa powder or cultured ghee, picking pack sizes, and requesting a quotation.",
 };
 
 const steps = [
@@ -17,15 +17,15 @@ const steps = [
   },
   {
     title: "Choose a pack size you will finish",
-    text: "Start smaller if you are trying something new. Move up when you know how often you use it — so freshness stays high and nothing sits unused.",
+    text: "Packs are 200 g, 500 g, 750 g, and 1 kg. Start smaller if you are trying something new. Move up when you know how often you use it.",
   },
   {
-    title: "Decide how you want to order",
-    text: "Home and small retail needs use the order form. Larger kitchen, shop, or export volumes use the bulk enquiry so we can quote the right quantity.",
+    title: "Request a quotation",
+    text: "Home and small retail needs use the quotation form. Larger kitchen, shop, or export volumes use the bulk enquiry so we can quote the right quantity.",
   },
   {
-    title: "Share delivery details and wait for confirmation",
-    text: "There is no online payment yet. You send a request; our team confirms availability, pricing, and delivery by email and WhatsApp.",
+    title: "Share delivery details and wait for your quote",
+    text: "No prices are listed online. You choose a pack size and request a quotation; our team replies with pricing and delivery by email and WhatsApp.",
   },
 ];
 
@@ -36,15 +36,15 @@ const faqs = [
   },
   {
     q: "How much should I order?",
-    a: "For first-time home use, the smallest pack is enough to learn the taste and routine. Regular users usually prefer mid-size packs listed on each product page.",
+    a: "For first-time home use, the 200 g pack is enough to learn the taste and routine. Regular users usually prefer 500 g or 750 g. Request a quotation for the size you choose.",
   },
   {
     q: "Can I order both products together?",
-    a: "Yes. Note both items in your order request (or place two lines of detail in the notes). We confirm the combined request by email and WhatsApp.",
+    a: "Yes. Note both items in your quotation request (or place two lines of detail in the notes). We confirm the combined request by email and WhatsApp.",
   },
   {
     q: "What if I need wholesale or export?",
-    a: "Use Bulk & Export instead of the home order form. Share estimated volume, destination, and preferred pack sizes so we can respond properly.",
+    a: "Use Bulk & Export instead of the home quotation form. Share estimated volume, destination, and preferred pack sizes so we can respond properly.",
   },
 ];
 
@@ -163,8 +163,8 @@ export default function BuyingGuidePage() {
                       <p className="mt-1 text-sm font-medium text-forest">
                         {product.packs.map((p) => p.label).join(" · ")}
                       </p>
-                      <p className="mt-1 text-sm text-forest">
-                        From {formatInr(product.price)}
+                      <p className="mt-1 text-sm text-muted">
+                        Quotation on request
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -178,7 +178,7 @@ export default function BuyingGuidePage() {
                         href={`/order?product=${product.slug}`}
                         className="btn-primary !px-4 !py-2.5"
                       >
-                        Order
+                        Request quote
                       </Link>
                     </div>
                   </div>
@@ -213,7 +213,7 @@ export default function BuyingGuidePage() {
           <div>
             <h2 className="font-display text-3xl">Ready to choose?</h2>
             <p className="mt-2 max-w-lg text-sm text-cream/75">
-              Browse the range, pick a pack, and send your order request — or
+              Browse the range, pick a pack size, and request a quotation — or
               ask for wholesale pricing if you need more volume.
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function BuyingGuidePage() {
               href="/order"
               className="inline-flex border border-cream/35 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-cream hover:bg-cream/10"
             >
-              Place order
+              Request quote
             </Link>
           </div>
         </Reveal>

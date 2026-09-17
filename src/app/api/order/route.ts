@@ -69,7 +69,6 @@ export async function POST(request: Request) {
     const data = body as OrderPayload;
     const product = getProduct(data.productSlug)!;
     const pack = product.packs.find((item) => item.id === data.packId)!;
-    const estimatedTotal = pack.price * Number(data.quantity);
 
     const toEmail = process.env.ORDER_TO_EMAIL;
     const fromEmail =
@@ -78,19 +77,19 @@ export async function POST(request: Request) {
 
     const html = `
       <div style="font-family: Arial, sans-serif; color: #1a241c; line-height: 1.5;">
-        <h2 style="margin-bottom: 8px;">New order request — Prime Weaves</h2>
-        <p style="margin-top: 0; color: #5c6b5f;">A customer submitted an order request from the website.</p>
+        <h2 style="margin-bottom: 8px;">New quotation request — Prime Weaves</h2>
+        <p style="margin-top: 0; color: #5c6b5f;">A customer requested a quotation from the website.</p>
         <hr style="border: none; border-top: 1px solid #d7ddd0; margin: 20px 0;" />
         <h3>Customer</h3>
         <p><strong>Name:</strong> ${escapeHtml(data.name)}<br/>
         <strong>Email:</strong> ${escapeHtml(data.email)}<br/>
         <strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
-        <h3>Order</h3>
+        <h3>Request</h3>
         <p><strong>Type:</strong> ${escapeHtml(data.orderType)}<br/>
         <strong>Product:</strong> ${escapeHtml(product.name)}<br/>
         <strong>Pack:</strong> ${escapeHtml(pack.label)}<br/>
         <strong>Quantity:</strong> ${Number(data.quantity)}<br/>
-        <strong>Estimated total:</strong> ₹${estimatedTotal.toLocaleString("en-IN")}</p>
+        <strong>Pricing:</strong> To be quoted</p>
         <h3>Delivery address</h3>
         <p>${escapeHtml(data.addressLine1)}<br/>
         ${data.addressLine2 ? `${escapeHtml(data.addressLine2)}<br/>` : ""}
@@ -105,17 +104,16 @@ export async function POST(request: Request) {
     `;
 
     if (!apiKey || !toEmail) {
-      console.info("[order-request]", {
+      console.info("[quotation-request]", {
         ...data,
         product: product.name,
         pack: pack.label,
-        estimatedTotal,
       });
       return NextResponse.json({
         ok: true,
         mode: "logged",
         message:
-          "Order received. Email is not configured yet — request was logged on the server.",
+          "Quotation request received. Email is not configured yet — request was logged on the server.",
       });
     }
 
@@ -124,7 +122,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: [toEmail],
       replyTo: data.email,
-      subject: `Order request: ${product.name} (${pack.label} × ${data.quantity})`,
+      subject: `Quotation request: ${product.name} (${pack.label} × ${data.quantity})`,
       html,
     });
 
@@ -140,7 +138,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { error: "Something went wrong while submitting your order." },
+      { error: "Something went wrong while submitting your quotation request." },
       { status: 500 },
     );
   }

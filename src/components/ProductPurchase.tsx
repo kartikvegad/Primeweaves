@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@/lib/products";
-import { formatInr } from "@/lib/products";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 
 type ProductPurchaseProps = {
@@ -22,7 +21,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
     <div className="mt-8 space-y-6">
       <div>
         <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
-          Choose pack
+          Choose pack size
         </p>
         <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-4">
           {product.packs.map((item) => {
@@ -44,7 +43,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
                     active ? "text-cream/75" : "text-muted"
                   }`}
                 >
-                  {formatInr(item.price)}
+                  Quotation on request
                 </span>
               </button>
             );
@@ -57,16 +56,13 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
           <QuantityStepper value={qty} onChange={setQty} />
         </div>
         <p className="pb-3 text-sm text-muted">
-          Est.{" "}
-          <span className="font-medium text-forest">
-            {formatInr((pack?.price || 0) * qty)}
-          </span>
+          Pricing confirmed after your quotation request.
         </p>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">
         <Link href={orderHref} className="btn-primary flex-1 !py-4 text-center">
-          Place order request
+          Request a quotation
         </Link>
         <Link
           href="/bulk"
@@ -76,8 +72,8 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
         </Link>
       </div>
       <p className="text-xs text-muted">
-        You’ll share address and contact details on the next step. We confirm
-        every request by email and WhatsApp — no online payment yet.
+        Choose a pack size and quantity, then share your details. We reply with
+        a quotation by email and WhatsApp — no listed prices on the site.
       </p>
     </div>
   );

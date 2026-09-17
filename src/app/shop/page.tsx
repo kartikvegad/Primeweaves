@@ -30,7 +30,7 @@ export default function ShopPage() {
             href="/order"
             className="inline-flex w-fit bg-forest px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition hover:bg-forest-deep"
           >
-            Place Order
+            Request Quote
           </Link>
         </div>
 

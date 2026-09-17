@@ -110,7 +110,7 @@ export function Header() {
                     : "inline-flex border border-cream/50 bg-cream/95 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-forest transition-colors duration-200 hover:bg-white md:px-5 md:text-[11px]"
                 }`}
               >
-                Place Order
+                Request Quote
               </Link>
               <button
                 type="button"
@@ -171,7 +171,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className="btn-primary mt-4 w-full text-center"
               >
-                Place Order
+                Request Quote
               </Link>
             </nav>
           </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { formatInr, products } from "@/lib/products";
+import { products } from "@/lib/products";
 import { siteImages } from "@/lib/images";
 import { heroTrust, qualities } from "@/lib/qualities";
 import { Reveal } from "@/components/home/Reveal";
@@ -411,7 +411,8 @@ function ProductDeepDive({
                 {product.packs.map((p) => p.label).join(" · ")}
               </p>
               <p className="mt-2 text-sm text-forest">
-                From {formatInr(product.price)} · Retail &amp; bulk
+                Packs: {product.packs.map((p) => p.label).join(" · ")} · Quotation
+                on request
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -425,7 +426,7 @@ function ProductDeepDive({
                 href={`/order?product=${product.slug}`}
                 className="btn-primary"
               >
-                Order
+                Request quote
               </Link>
             </div>
           </div>
@@ -541,7 +542,7 @@ export function ImpactStrip() {
 
 export function TrustBar() {
   const items = [
-    { title: "Order by request", text: "Email confirmation — no cart needed" },
+    { title: "Request a quotation", text: "Pricing shared by email & WhatsApp" },
     { title: "Retail packs", text: "Ready for home kitchens" },
     { title: "Bulk & export", text: "Business enquiries welcome" },
     { title: "Growing catalog", text: "New products, same care" },
@@ -875,11 +876,11 @@ export function RetailExport() {
                 Shop for your kitchen
               </h3>
               <p className="mt-4 text-sm text-muted">
-                Browse the current range, choose a pack, and send an order
-                request. We confirm by email and WhatsApp.
+                Browse the current range, choose a pack, and request a
+                quotation. We reply by email and WhatsApp.
               </p>
               <Link href="/order" className="btn-primary mt-8">
-                Shop for Home
+                Request a quotation
               </Link>
             </div>
           </Reveal>
@@ -912,9 +913,9 @@ export function RetailExport() {
 export function OrderBanner() {
   const steps = [
     { num: "01", title: "Choose product", text: "From the current range." },
-    { num: "02", title: "Select quantity", text: "Pack size and units." },
+    { num: "02", title: "Pick pack size", text: "200 g to 1 kg." },
     { num: "03", title: "Share details", text: "Contact and address." },
-    { num: "04", title: "Confirmation", text: "We reply by email and WhatsApp." },
+    { num: "04", title: "Get quotation", text: "We reply with pricing." },
   ];
 
   return (
@@ -923,14 +924,14 @@ export function OrderBanner() {
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr]">
           <div className="text-ink">
             <p className="text-[11px] uppercase tracking-[0.28em]">
-              Order by request
+              Order by quotation
             </p>
             <h2 className="mt-3 font-display text-3xl md:text-4xl lg:text-5xl">
               Tell us what you need.
             </h2>
             <p className="mt-4 max-w-xl text-ink/75">
-              Home orders, retail restocks, or bulk/export enquiries — send your
-              requirements and our team will respond.
+              Home, retail, or bulk/export — choose a pack size and request a
+              quotation. We reply with pricing by email and WhatsApp.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {steps.map((step) => (
@@ -951,7 +952,7 @@ export function OrderBanner() {
                 href="/order"
                 className="inline-flex bg-forest px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition hover:bg-forest-deep"
               >
-                Order for Home
+                Request a quotation
               </Link>
               <Link
                 href="/bulk"

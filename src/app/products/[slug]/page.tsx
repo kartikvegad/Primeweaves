@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatInr, getProduct, products } from "@/lib/products";
+import { getProduct, products } from "@/lib/products";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductPurchase } from "@/components/ProductPurchase";
 import { ProductTabs } from "@/components/ProductTabs";
@@ -86,18 +86,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 ) : null}
               </div>
 
-              <div className="mt-6 flex items-end gap-3">
-                <p className="font-display text-3xl text-forest sm:text-5xl">
-                  {formatInr(product.price)}
+              <div className="mt-6">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
+                  Pack sizes
                 </p>
-                {product.compareAt ? (
-                  <p className="pb-2 text-muted line-through">
-                    {formatInr(product.compareAt)}
-                  </p>
-                ) : null}
+                <p className="mt-2 font-display text-2xl text-forest sm:text-3xl">
+                  {product.packs.map((p) => p.label).join(" · ")}
+                </p>
+                <p className="mt-1 text-sm text-muted">
+                  Pricing available on quotation request
+                </p>
               </div>
-              <p className="mt-1 text-sm text-muted">Starting pack price</p>
-              <p className="mt-2 text-sm text-muted">{product.tagline}</p>
+              <p className="mt-4 text-sm text-muted">{product.tagline}</p>
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted">
                 {product.description}
               </p>
@@ -164,7 +164,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   href="/order"
                   className="text-[11px] uppercase tracking-[0.18em] text-muted transition-colors duration-200 hover:text-forest"
                 >
-                  Place an order →
+                  Request a quotation →
                 </Link>
               </div>
               <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:max-w-3xl">

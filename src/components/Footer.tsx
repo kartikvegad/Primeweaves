@@ -11,7 +11,7 @@ const shopLinks = [
 
 const helpLinks = [
   { href: "/#faq", label: "FAQ" },
-  { href: "/order", label: "How to Order" },
+  { href: "/order", label: "Request Quote" },
   { href: "/contact", label: "Contact" },
   { href: "/bulk", label: "Bulk Support" },
 ];

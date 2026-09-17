@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { formatInr, products } from "@/lib/products";
+import { products } from "@/lib/products";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { whatsappHref } from "@/lib/site";
 
@@ -43,7 +43,6 @@ export function OrderForm() {
 
   const pack =
     product.packs.find((item) => item.id === packId) || product.packs[0];
-  const estimated = (pack?.price || 0) * quantity;
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -81,14 +80,14 @@ export function OrderForm() {
 
       if (!response.ok) {
         setStatus("error");
-        setMessage(data.error || "Could not submit order.");
+        setMessage(data.error || "Could not submit quotation request.");
         return;
       }
 
       setStatus("success");
       setMessage(
         data.message ||
-          "Order request sent. Our team will contact you by email and WhatsApp shortly.",
+          "Quotation request sent. Our team will reply by email and WhatsApp shortly.",
       );
       event.currentTarget.reset();
       window.setTimeout(() => router.push("/shop"), 2800);
@@ -159,7 +158,7 @@ export function OrderForm() {
                     </p>
                     <p className="mt-1 text-xs text-muted">{item.tagline}</p>
                     <p className="mt-3 text-sm text-forest">
-                      From {formatInr(item.price)}
+                      Packs: {item.packs.map((p) => p.label).join(" · ")}
                     </p>
                   </div>
                 </button>
@@ -202,7 +201,7 @@ export function OrderForm() {
                         active ? "text-cream/75" : "text-muted"
                       }`}
                     >
-                      {formatInr(item.price)}
+                      Quote on request
                     </span>
                   </button>
                 );
@@ -320,10 +319,10 @@ export function OrderForm() {
             disabled={status === "loading" || status === "success"}
             className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {status === "loading" ? "Sending request…" : "Send order request"}
+            {status === "loading" ? "Sending request…" : "Request a quotation"}
           </button>
           <p className="text-sm text-muted">
-            We’ll confirm by email and WhatsApp.
+            We’ll reply with pricing by email and WhatsApp.
           </p>
         </div>
       </div>
@@ -341,7 +340,7 @@ export function OrderForm() {
           </div>
           <div className="p-5 sm:p-6">
             <p className="text-[11px] uppercase tracking-[0.18em] text-leaf">
-              Order summary
+              Quotation summary
             </p>
             <h3 className="mt-2 font-display text-2xl text-forest sm:text-3xl">
               {product.name}
@@ -363,18 +362,16 @@ export function OrderForm() {
                   {orderType}
                 </dd>
               </div>
-              <div className="flex justify-between gap-4 border-t border-forest/10 pt-3">
-                <dt className="text-muted">Estimated total</dt>
-                <dd className="font-display text-2xl text-forest">
-                  {formatInr(estimated)}
-                </dd>
+              <div className="border-t border-forest/10 pt-3">
+                <p className="text-sm font-medium text-forest">
+                  Pricing on quotation
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">
+                  No prices are listed online. Choose a pack size and we’ll
+                  share a quotation for your request.
+                </p>
               </div>
             </dl>
-
-            <p className="mt-4 text-xs leading-relaxed text-muted">
-              Estimate only. Final quote confirmed by our team — no online
-              payment yet.
-            </p>
           </div>
         </div>
 
@@ -388,13 +385,13 @@ export function OrderForm() {
           </p>
           <Link
             href={whatsappHref(
-              `Hi Prime Weaves — I’d like to order ${product.name} (${pack?.label || ""}) × ${quantity}.`,
+              `Hi Prime Weaves — I’d like a quotation for ${product.name} (${pack?.label || ""}) × ${quantity}.`,
             )}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex bg-[#25D366] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors duration-200 hover:bg-[#1ebe57]"
           >
-            WhatsApp order help
+            WhatsApp quotation help
           </Link>
         </div>
       </aside>

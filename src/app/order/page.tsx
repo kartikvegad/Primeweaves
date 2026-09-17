@@ -6,16 +6,16 @@ import { OrderForm } from "@/components/OrderForm";
 import { whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Place Order",
+  title: "Request a Quotation",
   description:
-    "Request Prime Weaves moringa powder or cultured ghee. We confirm every order by email and WhatsApp.",
+    "Request a quotation for Prime Weaves moringa powder or cultured ghee. Choose a pack size — we reply with pricing by email and WhatsApp.",
 };
 
 const steps = [
   { num: "01", label: "Choose product" },
-  { num: "02", label: "Select quantity" },
+  { num: "02", label: "Pick pack size" },
   { num: "03", label: "Share details" },
-  { num: "04", label: "Get confirmation" },
+  { num: "04", label: "Get quotation" },
 ];
 
 export default function OrderPage() {
@@ -32,15 +32,15 @@ export default function OrderPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/85 to-forest-deep/55" />
         <div className="relative mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
           <p className="text-[11px] uppercase tracking-[0.28em] text-gold">
-            Order by request
+            Quotation on request
           </p>
           <h1 className="mt-3 max-w-2xl font-display text-3xl sm:text-5xl md:text-6xl">
             Tell us what you need.
           </h1>
           <p className="mt-4 max-w-xl text-cream/80">
-            Choose a product and pack, share your details, and we’ll confirm
-            availability, pricing, and delivery by email and WhatsApp — no
-            online payment yet.
+            Choose a product and pack size (200 g–1 kg), share your details, and
+            we’ll send a quotation by email and WhatsApp — no listed prices
+            online.
           </p>
 
           <div className="mt-10 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
@@ -61,7 +61,7 @@ export default function OrderPage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#order-form" className="btn-accent">
-              Start order
+              Request a quotation
             </a>
             <Link
               href="/bulk"
@@ -70,7 +70,9 @@ export default function OrderPage() {
               Bulk / Export
             </Link>
             <Link
-              href={whatsappHref("Hi Prime Weaves — I have an order question.")}
+              href={whatsappHref(
+                "Hi Prime Weaves — I’d like a quotation for your products.",
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex border border-cream/30 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-[#25D366] hover:bg-[#25D366]/15 hover:text-white"
