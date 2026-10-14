@@ -16,15 +16,25 @@ export function line(label: string, value: string) {
   return `<strong>${escapeHtml(label)}:</strong> ${escapeHtml(trimmed)}<br/>`;
 }
 
+function smtpConfig() {
+  const user = (
+    process.env.SMTP_USER || process.env.GOOGLE_SMTP_USER
+  )?.trim();
+  const pass = (process.env.SMTP_PASSWORD || process.env.GOOGLE_SMTP_APP_PASSWORD)
+    ?.replace(/\s+/g, "");
+  const host = process.env.SMTP_HOST?.trim() || "smtp.hostinger.com";
+  const port = Number(process.env.SMTP_PORT || 465);
+  return { user, pass, host, port };
+}
+
 function transport() {
-  const user = process.env.GOOGLE_SMTP_USER?.trim();
-  const pass = process.env.GOOGLE_SMTP_APP_PASSWORD?.replace(/\s+/g, "");
+  const { user, pass, host, port } = smtpConfig();
   if (!user || !pass) return null;
 
   return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    host,
+    port,
+    secure: port === 465,
     auth: { user, pass },
   });
 }
@@ -34,11 +44,11 @@ export async function sendFormEmail(options: {
   html: string;
   replyTo?: string;
 }) {
-  const user = process.env.GOOGLE_SMTP_USER?.trim();
+  const { user } = smtpConfig();
   const mailer = transport();
   if (!mailer || !user) {
     console.error(
-      "[mail] Google Workspace SMTP is not configured. Set GOOGLE_SMTP_USER and GOOGLE_SMTP_APP_PASSWORD.",
+      "[mail] Hostinger SMTP is not configured. Set SMTP_USER and SMTP_PASSWORD.",
     );
     return { ok: false as const, code: "unconfigured" as const };
   }
@@ -53,7 +63,7 @@ export async function sendFormEmail(options: {
     });
     return { ok: true as const };
   } catch (error) {
-    console.error("[mail] Google Workspace send failed", error);
+    console.error("[mail] Hostinger send failed", error);
     return { ok: false as const, code: "failed" as const };
   }
 }
