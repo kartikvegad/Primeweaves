@@ -103,6 +103,22 @@ export async function POST(request: Request) {
       replyTo: data.email,
       subject: `Quotation request: ${product.name} (${pack.label} × ${data.quantity})`,
       html,
+      customer: {
+        to: data.email,
+        subject: `We received your quotation request for ${product.name}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; color: #1a241c; line-height: 1.5;">
+            <p>Hi ${escapeHtml(data.name)},</p>
+            <p>Thank you. We have received your quotation request and will reach out to you soon.</p>
+            <p>You asked for a quotation for:</p>
+            <p><strong>Product:</strong> ${escapeHtml(product.name)}<br/>
+            <strong>Pack size:</strong> ${escapeHtml(pack.label)}<br/>
+            <strong>Quantity:</strong> ${Number(data.quantity)}</p>
+            <p>Our team will share pricing by email and WhatsApp.</p>
+            <p>Prime Weaves</p>
+          </div>
+        `,
+      },
     });
 
     if (!result.ok) return mailFailureResponse(result.code);

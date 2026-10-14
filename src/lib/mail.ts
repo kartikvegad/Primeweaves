@@ -43,6 +43,11 @@ export async function sendFormEmail(options: {
   subject: string;
   html: string;
   replyTo?: string;
+  customer?: {
+    to: string;
+    subject: string;
+    html: string;
+  };
 }) {
   const { user } = smtpConfig();
   const mailer = transport();
@@ -53,17 +58,34 @@ export async function sendFormEmail(options: {
     return { ok: false as const, code: "unconfigured" as const };
   }
 
+  const from = `Prime Weaves <${user}>`;
+
   try {
     await mailer.sendMail({
-      from: `Prime Weaves <${user}>`,
+      from,
       to: [...formInboxes],
       replyTo: options.replyTo,
       subject: options.subject,
       html: options.html,
     });
-    return { ok: true as const };
   } catch (error) {
     console.error("[mail] Hostinger send failed", error);
     return { ok: false as const, code: "failed" as const };
   }
+
+  if (options.customer) {
+    try {
+      await mailer.sendMail({
+        from,
+        to: options.customer.to,
+        subject: options.customer.subject,
+        html: options.customer.html,
+      });
+    } catch (error) {
+      console.error("[mail] Customer confirmation failed", error);
+      return { ok: false as const, code: "failed" as const };
+    }
+  }
+
+  return { ok: true as const };
 }
