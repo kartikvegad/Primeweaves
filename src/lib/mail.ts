@@ -61,13 +61,15 @@ export async function sendFormEmail(options: {
   const from = `Prime Weaves <${user}>`;
 
   try {
-    await mailer.sendMail({
-      from,
-      to: [...formInboxes],
-      replyTo: options.replyTo,
-      subject: options.subject,
-      html: options.html,
-    });
+    for (const inbox of formInboxes) {
+      await mailer.sendMail({
+        from,
+        to: inbox,
+        replyTo: options.replyTo,
+        subject: options.subject,
+        html: options.html,
+      });
+    }
   } catch (error) {
     console.error("[mail] Hostinger send failed", error);
     return { ok: false as const, code: "failed" as const };
