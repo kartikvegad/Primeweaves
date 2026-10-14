@@ -13,7 +13,8 @@ export function ContactForm() {
     setStatus("loading");
     setMessage("");
 
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const payload = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
@@ -36,7 +37,7 @@ export function ContactForm() {
       }
       setStatus("success");
       setMessage("Message sent. We’ll reply by email shortly.");
-      event.currentTarget.reset();
+      formEl.reset();
     } catch {
       setStatus("error");
       setMessage("Network error. Please try again.");

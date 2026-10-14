@@ -33,7 +33,8 @@ export function BulkQuoteForm() {
     setStatus("loading");
     setMessage("");
 
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const payload = {
       company: String(form.get("company") || ""),
       name: String(form.get("name") || ""),
@@ -58,7 +59,7 @@ export function BulkQuoteForm() {
       }
       setStatus("sent");
       setMessage("Thanks — our team will follow up on your enquiry shortly.");
-      event.currentTarget.reset();
+      formEl.reset();
       setProduct("both");
     } catch {
       setStatus("error");

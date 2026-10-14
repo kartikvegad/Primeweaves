@@ -49,7 +49,8 @@ export function OrderForm() {
     setStatus("loading");
     setMessage("");
 
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const payload = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
@@ -89,7 +90,7 @@ export function OrderForm() {
         data.message ||
           "Quotation request sent. Our team will reply by email and WhatsApp shortly.",
       );
-      event.currentTarget.reset();
+      formEl.reset();
       window.setTimeout(() => router.push("/shop"), 2800);
     } catch {
       setStatus("error");

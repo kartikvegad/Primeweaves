@@ -12,7 +12,8 @@ export function NewsletterForm() {
     event.preventDefault();
     setStatus("loading");
     setMessage("");
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const email = String(form.get("email") || "");
 
     try {
@@ -29,7 +30,7 @@ export function NewsletterForm() {
       }
       setStatus("sent");
       setMessage("You’re on the list.");
-      event.currentTarget.reset();
+      formEl.reset();
     } catch {
       setStatus("error");
       setMessage("Network error. Please try again.");
