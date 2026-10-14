@@ -31,17 +31,22 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Ordering (no cart)
 
 Customers submit product, quantity, address, and phone on `/order`.
-The request is emailed via Resend (`POST /api/order`).
+Contact, bulk, and newsletter forms use the same delivery.
+Each submission is emailed through Google Workspace SMTP to
+admin@primeweaves.com, sales@primeweaves.com, and info@primeweaves.com.
 
 Copy `.env.example` to `.env.local` and set:
 
 ```
-RESEND_API_KEY=re_xxx
-ORDER_TO_EMAIL=your-inbox@domain.com
-ORDER_FROM_EMAIL=Primeweaves Orders <onboarding@resend.dev>
+GOOGLE_SMTP_USER=info@primeweaves.com
+GOOGLE_SMTP_APP_PASSWORD=your-google-app-password
 ```
 
-Without those vars, requests are still accepted and logged in the server console (useful for local testing).
+Create the app password in the info@ Google account:
+Security → 2-Step Verification → App passwords.
+The mailbox must be allowed to send via Gmail SMTP.
+
+Without those vars, the forms return an error instead of pretending the message was sent.
 
 ## Notes
 

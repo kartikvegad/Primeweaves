@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteContact, whatsappHref } from "@/lib/site";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 const shopLinks = [
   { href: "/shop", label: "Shop" },
@@ -71,20 +72,7 @@ export function Footer() {
           <p className="mt-4 text-sm text-cream/70">
             Product launches and availability updates.
           </p>
-          <form className="mt-5 flex overflow-hidden border border-cream/20 bg-forest">
-            <input
-              type="email"
-              required
-              placeholder="Email address"
-              className="w-full bg-transparent px-4 py-3 text-sm text-cream outline-none placeholder:text-cream/40"
-            />
-            <button
-              type="submit"
-              className="bg-gold px-4 text-sm font-semibold text-ink transition hover:bg-gold-deep"
-            >
-              Join
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
 
         <div>

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContactForm } from "@/components/ContactForm";
 import { siteContact, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Prime Weaves by phone, email, or address for retail orders, partnerships, and support.",
+    "Contact Prime Weaves by phone or email for retail orders, partnerships, and support.",
 };
 
 export default function ContactPage() {
@@ -20,14 +21,14 @@ export default function ContactPage() {
             Let’s talk products, packs, and partnerships.
           </h1>
           <p className="mt-4 max-w-xl text-cream/75">
-            Reach us by phone, email, or visit details below — or send a message
-            and we’ll reply during business hours.
+            Reach us by phone or email — or send a message and we’ll reply
+            during business hours.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <article className="border border-forest/10 bg-white/60 p-6 transition-colors duration-200 hover:border-leaf/40 hover:bg-mist/40">
             <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
               Phone / WhatsApp
@@ -60,24 +61,6 @@ export default function ContactPage() {
             </p>
           </article>
 
-          <article className="border border-forest/10 bg-white/60 p-6 transition-colors duration-200 hover:border-leaf/40 hover:bg-mist/40 sm:col-span-2 lg:col-span-1">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-gold">
-              Address
-            </p>
-            <address className="mt-4 not-italic">
-              {siteContact.addressLines.map((line) => (
-                <p
-                  key={line}
-                  className="font-display text-xl text-forest md:text-2xl lg:text-3xl"
-                >
-                  {line}
-                </p>
-              ))}
-            </address>
-            <p className="mt-3 text-sm text-muted">
-              Hours: {siteContact.hours}
-            </p>
-          </article>
         </div>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
@@ -104,58 +87,9 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <form className="border border-forest/10 bg-white/60 p-6 md:p-8">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Name" name="name" required />
-              <Field label="Email" name="email" type="email" required />
-            </div>
-            <div className="mt-5">
-              <Field label="Phone number" name="phone" type="tel" />
-            </div>
-            <div className="mt-5">
-              <Field label="Subject" name="subject" required />
-            </div>
-            <div className="mt-5">
-              <label className="block text-[11px] uppercase tracking-[0.16em] text-muted">
-                Message
-                <textarea
-                  name="message"
-                  required
-                  rows={6}
-                  className="field mt-2 resize-y"
-                />
-              </label>
-            </div>
-            <button type="submit" className="btn-primary mt-6">
-              Send message
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </section>
     </div>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <label className="block text-[11px] uppercase tracking-[0.16em] text-muted">
-      {label}
-      <input
-        name={name}
-        type={type}
-        required={required}
-        className="field mt-2"
-      />
-    </label>
   );
 }

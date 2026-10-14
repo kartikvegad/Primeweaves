@@ -23,11 +23,47 @@ const productOptions = [
 
 export function BulkQuoteForm() {
   const [product, setProduct] = useState("both");
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">(
+    "idle",
+  );
+  const [message, setMessage] = useState("");
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("sent");
+    setStatus("loading");
+    setMessage("");
+
+    const form = new FormData(event.currentTarget);
+    const payload = {
+      company: String(form.get("company") || ""),
+      name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
+      country: String(form.get("country") || ""),
+      product,
+      volume: String(form.get("volume") || ""),
+      notes: String(form.get("notes") || ""),
+    };
+
+    try {
+      const response = await fetch("/api/bulk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        setStatus("error");
+        setMessage(data.error || "Could not send your enquiry.");
+        return;
+      }
+      setStatus("sent");
+      setMessage("Thanks — our team will follow up on your enquiry shortly.");
+      event.currentTarget.reset();
+      setProduct("both");
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Please try again.");
+    }
   }
 
   return (
@@ -63,13 +99,23 @@ export function BulkQuoteForm() {
           />
         </label>
       </div>
-      {status === "sent" ? (
-        <p className="mt-5 border border-sage bg-mist px-4 py-3 text-sm text-forest">
-          Thanks — our team will follow up on your enquiry shortly.
+      {message ? (
+        <p
+          className={`mt-5 border px-4 py-3 text-sm ${
+            status === "error"
+              ? "border-red-200 bg-red-50 text-red-900"
+              : "border-sage bg-mist text-forest"
+          }`}
+        >
+          {message}
         </p>
       ) : null}
-      <button type="submit" className="btn-primary mt-6">
-        Submit inquiry
+      <button
+        type="submit"
+        className="btn-primary mt-6"
+        disabled={status === "loading"}
+      >
+        {status === "loading" ? "Sending…" : "Submit inquiry"}
       </button>
     </form>
   );

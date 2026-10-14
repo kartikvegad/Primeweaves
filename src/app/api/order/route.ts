@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { getProduct } from "@/lib/products";
+import { escapeHtml, sendFormEmail } from "@/lib/mail";
+import { mailFailureResponse } from "@/lib/mail-response";
 
 export type OrderPayload = {
   name: string;
@@ -70,11 +71,6 @@ export async function POST(request: Request) {
     const product = getProduct(data.productSlug)!;
     const pack = product.packs.find((item) => item.id === data.packId)!;
 
-    const toEmail = process.env.ORDER_TO_EMAIL;
-    const fromEmail =
-      process.env.ORDER_FROM_EMAIL || "Prime Weaves Orders <onboarding@resend.dev>";
-    const apiKey = process.env.RESEND_API_KEY;
-
     const html = `
       <div style="font-family: Arial, sans-serif; color: #1a241c; line-height: 1.5;">
         <h2 style="margin-bottom: 8px;">New quotation request — Prime Weaves</h2>
@@ -103,38 +99,15 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    if (!apiKey || !toEmail) {
-      console.info("[quotation-request]", {
-        ...data,
-        product: product.name,
-        pack: pack.label,
-      });
-      return NextResponse.json({
-        ok: true,
-        mode: "logged",
-        message:
-          "Quotation request received. Email is not configured yet — request was logged on the server.",
-      });
-    }
-
-    const resend = new Resend(apiKey);
-    const result = await resend.emails.send({
-      from: fromEmail,
-      to: [toEmail],
+    const result = await sendFormEmail({
       replyTo: data.email,
       subject: `Quotation request: ${product.name} (${pack.label} × ${data.quantity})`,
       html,
     });
 
-    if (result.error) {
-      console.error(result.error);
-      return NextResponse.json(
-        { error: "Could not send email. Please try again or contact us." },
-        { status: 502 },
-      );
-    }
+    if (!result.ok) return mailFailureResponse(result.code);
 
-    return NextResponse.json({ ok: true, mode: "email" });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error(err);
     return NextResponse.json(
@@ -142,13 +115,4 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
 }

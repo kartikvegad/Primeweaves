@@ -1,9 +1,16 @@
-/** Public contact details — update these when real business info is ready. */
+/** Inboxes that receive every website form submission. */
+export const formInboxes = [
+  "admin@primeweaves.com",
+  "sales@primeweaves.com",
+  "info@primeweaves.com",
+] as const;
+
+/** Public contact details. */
 export const siteContact = {
-  email: "hello@primeweaves.com",
-  phoneDisplay: "+91 00000 00000",
+  email: "info@primeweaves.com",
+  phoneDisplay: "+91 82941 42439",
   /** Digits only, country code included (no + or spaces) for wa.me links */
-  whatsappNumber: "910000000000",
+  whatsappNumber: "918294142439",
   addressLines: [
     "Prime Weaves",
     "Manufacturing & dispatch",
