@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { siteContact, whatsappHref } from "@/lib/site";
+import { razorpayPaymentUrl, siteContact, whatsappHref } from "@/lib/site";
 import { NewsletterForm } from "@/components/NewsletterForm";
 
 const shopLinks = [
@@ -13,6 +13,7 @@ const shopLinks = [
 const helpLinks = [
   { href: "/#faq", label: "FAQ" },
   { href: "/order", label: "Request Quote" },
+  { href: razorpayPaymentUrl, label: "Pay", external: true },
   { href: "/contact", label: "Contact" },
   { href: "/bulk", label: "Bulk Support" },
 ];
@@ -102,6 +103,9 @@ export function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
+                  {...("external" in link
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="text-sm text-cream/80 transition hover:text-white"
                 >
                   {link.label}

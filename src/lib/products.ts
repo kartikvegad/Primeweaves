@@ -79,7 +79,6 @@ export const products: Product[] = [
     image: "/products/moringa-pouch.jpg",
     gallery: [
       "/products/moringa-pouch.jpg",
-      "/products/moringa-jar-branded.png",
       "/products/moringa-jar-linen.png",
       "/products/moringa-pour.png",
     ],
@@ -131,7 +130,6 @@ export const products: Product[] = [
     image: "/products/ghee-jar-lifestyle.jpg",
     gallery: [
       "/products/ghee-jar-lifestyle.jpg",
-      "/products/ghee-jar-branded.png",
       "/products/ghee-jar-green-gold.png",
       "/products/ghee-scoop.png",
     ],

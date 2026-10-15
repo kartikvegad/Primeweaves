@@ -1,3 +1,5 @@
+export const razorpayPaymentUrl = "https://razorpay.me/@primeweaves";
+
 /** Inboxes that receive every website form submission. */
 export const formInboxes = [
   "admin@primeweaves.com",

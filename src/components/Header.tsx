@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { razorpayPaymentUrl } from "@/lib/site";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -103,6 +104,18 @@ export function Header() {
 
             <div className="flex shrink-0 items-center gap-2 sm:gap-3">
               <Link
+                href={razorpayPaymentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`hidden !px-4 !py-2.5 !text-[10px] sm:inline-flex md:!px-5 md:!text-[11px] ${
+                  solid
+                    ? "btn-outline"
+                    : "inline-flex border border-cream/50 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:bg-cream/10 md:px-5 md:text-[11px]"
+                }`}
+              >
+                Pay
+              </Link>
+              <Link
                 href="/order"
                 className={`hidden !px-4 !py-2.5 !text-[10px] sm:inline-flex md:!px-5 md:!text-[11px] ${
                   solid
@@ -167,9 +180,18 @@ export function Header() {
                 </Link>
               ))}
               <Link
+                href={razorpayPaymentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn-outline mt-4 w-full text-center"
+              >
+                Pay
+              </Link>
+              <Link
                 href="/order"
                 onClick={() => setOpen(false)}
-                className="btn-primary mt-4 w-full text-center"
+                className="btn-primary mt-3 w-full text-center"
               >
                 Request Quote
               </Link>
